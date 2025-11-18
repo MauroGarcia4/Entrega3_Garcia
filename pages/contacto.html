@@ -1,84 +1,196 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Meta tags para configuración básica -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contacta con Soda Stereo - Formulario de contacto">
-    <title>Soda Stereo - Contacto</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Formulario de contacto y suscripción para recibir novedades relacionadas con Soda Stereo." />
+  <title>Soda Stereo - Contacto</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
-    <!-- Header con navegación -->
-    <header>
-        <div class="logo">
-            <a href="../index.html"><img src="../img/logo_soda.png" alt="Logo de la Banda"></a>
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="navbar navbar-expand-lg main-nav">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+          <img src="../img/logo_soda.png" alt="Logo de Soda Stereo" class="logo-img" />
+          <span class="logo-text">Rock en español</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Mostrar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="banda.html">Banda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="discografia.html">Discografía</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="contacto.html">Contacto</a>
+            </li>
+          </ul>
         </div>
-        <nav class="navbar navbar-expand-lg">
-            <!-- Botón hamburguesa de Bootstrap -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="discografia.html">Discografía</a></li>
-                    <li><a href="banda.html">Banda</a></li>
-                    <li><a href="contacto.html" class="active">Contacto</a></li>
-                </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="contacto-page">
+    <!-- HERO CONTACTO -->
+    <section class="page-hero page-hero--contacto">
+      <div class="container">
+        <h1 class="page-hero__title">Contacto</h1>
+        <p class="page-hero__subtitle">
+          Si querés dejarnos un mensaje, compartir algún recuerdo sobre Soda Stereo o
+          proponer nuevo contenido para el sitio, completá el formulario.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTENIDO CONTACTO -->
+    <section class="page-section">
+      <div class="container">
+        <div class="contacto-layout">
+          <!-- Formulario -->
+          <form class="contact-form">
+            <h2 class="section-title">Escribinos</h2>
+
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+
+              <div class="contact-form__field">
+                <label for="email">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="nombre@ejemplo.com"
+                  required
+                />
+              </div>
             </div>
-        </nav>
-    </header>
 
-    <!-- Contenido principal -->
-    <main>
-        <!-- Sección: Formulario de Contacto -->
-        <section class="contacto">
-            <h1>Contacto</h1>
-            <p>¿Tenes alguna consulta o comentario sobre Soda Stereo? Completa el formulario y nos pondremos en contacto contigo.</p>
+            <div class="contact-form__row">
+              <div class="contact-form__field">
+                <label for="pais">País</label>
+                <input
+                  type="text"
+                  id="pais"
+                  name="pais"
+                  placeholder="Argentina, Chile, México..."
+                />
+              </div>
 
-            <form action="#" method="post" class="formulario-contacto">
-                <div class="form-group">
-                    <label for="nombre">Nombre completo:</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-                </div>
+              <div class="contact-form__field">
+                <label for="motivo">Motivo del mensaje</label>
+                <input
+                  type="text"
+                  id="motivo"
+                  name="motivo"
+                  placeholder="Consulta, sugerencia, recuerdo, etc."
+                />
+              </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="email">Correo electrónico:</label>
-                    <input type="email" id="email" name="email" placeholder="tu@email.com" required>
-                </div>
+            <div class="contact-form__field">
+              <label for="mensaje">Mensaje</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows="5"
+                placeholder="Contanos qué te gustaría compartir..."
+                required
+              ></textarea>
+            </div>
 
-                <div class="form-group">
-                    <label for="asunto">Asunto:</label>
-                    <input type="text" id="asunto" name="asunto" placeholder="Motivo de tu mensaje" required>
-                </div>
+            <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+          </form>
 
-                <div class="form-group">
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="mensaje" rows="6" placeholder="Escribe tu mensaje aquí..." required></textarea>
-                </div>
+          <!-- Info lateral -->
+          <aside class="contacto-layout__info">
+            <p class="contacto-text">
+              Este formulario está pensado para recopilar comentarios, sugerencias y
+              propuestas de contenido relacionadas con Soda Stereo y su legado.
+            </p>
 
-                <button type="submit">Enviar mensaje</button>
-            </form>
-        </section>
-    </main>
+            <ul class="contacto-list">
+              <li><span>Correo:</span> contacto@sodastereo.com (ejemplo)</li>
+              <li><span>Ubicación:</span> Buenos Aires, Argentina</li>
+              <li><span>Idioma principal:</span> Español</li>
+            </ul>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Soda Stereo. Todos los derechos reservados.</p>
-        <div class="redes-sociales">
-            <a href="https://www.facebook.com/sodastereo" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.instagram.com/sodastereo" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://twitter.com/sodastereo" target="_blank" rel="noopener noreferrer">Twitter</a>
+            <div class="newsletter">
+              <h3 class="newsletter__title">Suscribite a las novedades</h3>
+              <p class="newsletter__text">
+                Recibí actualizaciones cuando se agregue nuevo contenido, se sumen discos
+                o se publiquen datos curiosos de la banda.
+              </p>
+
+              <form class="newsletter__form">
+                <input
+                  type="email"
+                  name="newsletter-email"
+                  placeholder="Tu correo electrónico"
+                  required
+                />
+                <button type="submit" class="btn btn--secondary">Suscribirme</button>
+              </form>
+            </div>
+          </aside>
         </div>
-    </footer>
+      </div>
+    </section>
+  </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Soda Stereo. Todos los derechos reservados.</p>
+    <div class="redes-sociales">
+      <a href="https://www.facebook.com/sodastereo" target="_blank" rel="noopener noreferrer">
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/sodastereo" target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+      <a href="https://twitter.com/sodastereo" target="_blank" rel="noopener noreferrer">
+        Twitter
+      </a>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  ></script>
 </body>
 </html>

@@ -1,0 +1,561 @@
+/**
+ * Componentes reutilizables
+ * Uso de @extend: .btn extiende %btn-base, .card extiende %card-base
+ * Uso de nesting: &--primary, &--secondary, &:hover dentro de .btn
+ * Uso de operadores: función lighten() para generar color hover
+ */
+
+%card-base {
+  background-color: $color-surface-elevated;
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid $color-border;
+  @include soft-shadow(40px, 0.5);
+}
+
+%btn-base {
+  display: inline-block;
+  padding: 0.7rem 1.8rem;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: $font-size-base;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease, color 0.15s ease;
+}
+
+// Botones: ejemplo de @extend y nesting con &
+.btn {
+  @extend %btn-base; // Extiende placeholder base
+
+  &--primary {
+    background: $color-primary;
+    color: $color-bg;
+    @include soft-shadow(24px, 0.45);
+    font-weight: 600;
+
+    &:hover {
+      transform: translateY(-1px);
+      background-color: lighten($color-primary, 8%); // Operador: función lighten() - más brillante
+      box-shadow: 0 12px 30px rgba(14, 165, 233, 0.4); // Sombra con color primary
+      @include soft-shadow(30px, 0.55);
+    }
+  }
+
+  &--secondary {
+    background: transparent;
+    border: 2px solid $color-light;
+    color: $color-light;
+    font-weight: 600;
+
+    &:hover {
+      background-color: rgba(249, 115, 22, 0.15);
+      border-color: $color-secondary;
+      color: $color-secondary;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.25);
+    }
+  }
+}
+
+// Cards: ejemplo de @extend y operador @for para animaciones escalonadas
+.card,
+.disco-card {
+  @extend %card-base; // Extiende placeholder base
+  @include smooth-transition(transform box-shadow border-color, $transition-base);
+  position: relative;
+  overflow: hidden;
+
+  @include fade-in-up(0s, 0.4s);
+  
+  // Nesting: selector &:hover dentro del componente
+  &:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55);
+    border-color: rgba(255, 255, 255, 0.22);
+  }
+
+  // Operador @for: genera animaciones escalonadas dinámicamente
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      @include fade-in-up(#{$i * 0.1}s, 0.5s); // Operador: multiplicación ($i * 0.1)
+    }
+  }
+}
+
+// Card con nesting profundo: &__img, &--circle, &:hover
+.card {
+  position: relative;
+
+  &__img {
+    border-radius: $radius-md;
+    margin-bottom: $spacing-sm;
+    @include smooth-transition(transform opacity, $transition-base);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+
+    &:hover {
+      transform: scale(1.05);
+      opacity: 0.95;
+    }
+
+    &--circle {
+      border-radius: 50%;
+      transition: transform $transition-base ease;
+
+      &:hover {
+        transform: scale(1.1) rotate(5deg);
+      }
+    }
+  }
+
+  &__body {
+    margin-top: 0.5rem;
+  }
+
+  &__title {
+    font-size: $font-size-xl;
+    margin-bottom: 0.25rem;
+  }
+
+  &__subtitle {
+    font-size: $font-size-sm;
+    color: $color-muted;
+    margin-bottom: 0.5rem;
+    opacity: 0.92;
+    font-weight: 500;
+  }
+
+  &__text {
+    font-size: $font-size-base;
+    color: $color-light;
+    opacity: 0.96;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  &__tag {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: rgba($color-secondary, 0.25); // Más visible
+    color: $color-secondary;
+    border: 1px solid rgba($color-secondary, 0.3);
+  }
+
+  &--noticia {
+    @include hover-lift(-4px, 0 12px 50px rgba(0, 0, 0, 0.55));
+    cursor: pointer;
+
+    // Efecto adicional en la imagen de la noticia
+    .card__img {
+      &::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        opacity: 0;
+        @include smooth-transition(opacity, $transition-base);
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--integrante {
+    text-align: center;
+  }
+}
+
+.card__link,
+.disco-card__links {
+  margin-top: 0.75rem;
+  font-size: $font-size-sm;
+
+  a {
+    color: $color-secondary;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+    font-weight: 500;
+
+    &:hover {
+      color: lighten($color-secondary, 6%);
+    }
+  }
+}
+
+
+// -------- Grillas (cards / discos) --------
+
+.cards-grid,
+.discos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+
+  @include respond-to(tablet) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}
+
+// -------- Timeline --------
+
+.timeline {
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  display: grid;
+  gap: $spacing-sm;
+  position: relative;
+
+  // Línea animada con efecto de crecimiento
+  &::before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: 2px;
+    height: 0;
+    background: linear-gradient(to bottom, $color-secondary, transparent);
+    animation: growHeight 1s ease-out 0.5s both;
+  }
+
+  &__item {
+    position: relative;
+    @include smooth-transition(all, $transition-base);
+    padding: $spacing-xs 0;
+
+    // Punto animado con efecto de pulso
+    &::before {
+      content: "";
+      position: absolute;
+      left: -1.7rem;
+      top: 0.35rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $color-secondary;
+      box-shadow: 0 0 15px rgba(249, 115, 22, 0.7); // Más brillante
+      @include smooth-transition(all, $transition-base);
+      animation: scaleIn 0.5s ease-out both;
+    }
+
+    // Efecto hover con desplazamiento
+      &:hover {
+        transform: translateX(10px);
+        
+        &::before {
+          transform: scale(1.4);
+          box-shadow: 0 0 25px rgba(249, 115, 22, 0.9); // Más brillante
+        }
+
+        .timeline__year {
+          color: $color-secondary;
+          font-weight: 700;
+        }
+      }
+
+    // Operador @for: genera animaciones escalonadas (multiplicación y suma: $i * 0.1 + 0.3)
+    @for $i from 1 through 20 {
+      &:nth-child(#{$i}) {
+        animation: slideInRight 0.5s ease-out #{$i * 0.1 + 0.3}s both;
+      }
+    }
+  }
+
+  &__year {
+    font-weight: 600;
+    margin-bottom: 0.1rem;
+    @include smooth-transition(color, $transition-fast);
+  }
+
+  &__text {
+    font-size: $font-size-base;
+    opacity: 0.96;
+    line-height: 1.75;
+    color: $color-light;
+    font-weight: 400;
+  }
+
+  &--banda {
+    gap: $spacing-lg;
+  }
+
+  @include respond-to(tablet) {
+    margin-left: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  @include respond-to(mobile) {
+    margin-left: 1rem;
+    padding-left: 1rem;
+
+    &__item::before {
+      left: -1.4rem;
+      width: 10px;
+      height: 10px;
+    }
+
+    &__item:hover {
+      transform: translateX(5px);
+    }
+  }
+}
+
+// Animación para línea de tiempo
+@keyframes growHeight {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+// -------- Chips de filtro --------
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+
+  @include respond-to(mobile) {
+    justify-content: center;
+  }
+}
+
+.chip {
+  padding: 0.35rem 0.9rem;
+  border-radius: $radius-full;
+  border: 1px solid $color-border;
+  background-color: rgba(15, 23, 42, 0.9);
+  font-size: $font-size-sm;
+  cursor: pointer;
+  @include smooth-transition(all, $transition-base);
+  position: relative;
+  overflow: hidden;
+
+  // Efecto de escala en hover
+  &:hover {
+    background-color: rgba(249, 115, 22, 0.18);
+    border-color: $color-secondary;
+    transform: scale(1.05);
+  }
+
+  // Efecto de pulso para chips activos
+  &--active {
+    background-color: $color-secondary;
+    color: #000;
+    border-color: $color-secondary;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.6); // Más brillante
+    animation: pulse 2s infinite;
+    font-weight: 600;
+
+    &:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(249, 115, 22, 0.8);
+    }
+  }
+}
+
+// Animación de pulso para chips activos
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.9);
+  }
+}
+
+// Badges: uso del operador @each para generar clases dinámicamente
+.badge {
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+// Operador @each: itera sobre mapa $decadas y genera .badge--ochentas, .badge--noventas, .badge--dosmil
+@each $nombre, $color in $decadas {
+  .badge--#{$nombre} {
+    background-color: $color;
+    color: #fff;
+  }
+}
+
+// -------- Frases --------
+
+.quotes-list {
+  display: grid;
+  gap: $spacing-sm;
+
+  .quote-item {
+    font-style: italic;
+    opacity: 0.96;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-md;
+    background-color: rgba(255, 255, 255, 0.08); // Más visible
+    color: $color-light;
+    @include smooth-transition(all, $transition-base);
+    position: relative;
+    border-left: 3px solid transparent;
+    line-height: 1.75;
+    font-weight: 400;
+    font-size: $font-size-base;
+
+    // Efecto hover con borde y transformación
+    &:hover {
+      opacity: 1;
+      transform: translateX(5px);
+      border-left-color: $color-secondary;
+      background-color: rgba(249, 115, 22, 0.1); // Tinte naranja suave
+      box-shadow: 0 4px 20px rgba(249, 115, 22, 0.2);
+    }
+
+    // Operador @for: animaciones escalonadas con multiplicación ($i * 0.1)
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        @include fade-in-up(#{$i * 0.1}s, 0.5s);
+      }
+    }
+  }
+}
+
+// -------- Animaciones --------
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.tours-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $font-size-base;
+
+  thead {
+    background-color: $color-surface-elevated;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  th,
+  td {
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid $color-border;
+    @include smooth-transition(background-color, $transition-fast);
+  }
+
+  tbody {
+    tr {
+      @include smooth-transition(background-color transform, $transition-base);
+
+      // Efecto hover en filas
+      &:hover {
+        background-color: rgba(249, 115, 22, 0.1);
+        transform: translateX(5px);
+      }
+
+      // Filas pares con fondo alternativo
+      &:nth-child(even) {
+        background-color: rgba(15, 23, 42, 0.7);
+      }
+
+      // Operador @for: animaciones escalonadas en filas de tabla (multiplicación: $i * 0.05)
+      @for $i from 1 through 20 {
+        &:nth-child(#{$i}) {
+          animation: slideInRight 0.4s ease-out #{$i * 0.05}s both;
+        }
+      }
+    }
+  }
+
+  @include respond-to(tablet) {
+    font-size: $font-size-sm;
+    
+    th,
+    td {
+      padding: 0.55rem;
+      font-size: $font-size-sm;
+    }
+  }
+
+  @include respond-to(mobile) {
+    font-size: $font-size-xs;
+    
+    th,
+    td {
+      padding: 0.5rem;
+      font-size: $font-size-xs;
+    }
+  }
+}

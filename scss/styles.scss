@@ -1,0 +1,13 @@
+/**
+ * Archivo principal SCSS
+ * Importa todos los módulos siguiendo arquitectura 7-1 pattern
+ */
+
+@charset "UTF-8";
+
+@import "variables";    // Variables SASS: colores, tipografía, espaciados, breakpoints
+@import "mixins";       // Mixins reutilizables para media queries, transiciones, animaciones
+@import "base";         // Estilos base y reset
+@import "layout";       // Estructura: header, footer, secciones
+@import "components";   // Componentes reutilizables: botones, cards, badges, timeline
+@import "pages";        // Estilos específicos de cada página

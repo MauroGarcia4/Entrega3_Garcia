@@ -1,97 +1,241 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Meta tags para configuración básica -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Información sobre los miembros de Soda Stereo">
-    <title>Soda Stereo - Banda</title>
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Integrantes, origen e historia de Soda Stereo." />
+  <title>Soda Stereo - Banda</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="../css/styles.css" />
 </head>
 <body>
-    <!-- Header con navegación -->
-    <header>
-        <div class="logo">
-            <a href="../index.html"><img src="../img/logo_soda.png" alt="Logo de la Banda"></a>
+  <!-- Header -->
+  <header class="main-header">
+    <nav class="navbar navbar-expand-lg main-nav">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="../index.html">
+          <img src="../img/logo_soda.png" alt="Logo de Soda Stereo" class="logo-img" />
+          <span class="logo-text">Rock en español</span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Mostrar navegación"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="banda.html">Banda</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="discografia.html">Discografía</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contacto.html">Contacto</a>
+            </li>
+          </ul>
         </div>
-        <nav class="navbar navbar-expand-lg">
-            <!-- Botón hamburguesa de Bootstrap -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul>
-                    <li><a href="../index.html">Inicio</a></li>
-                    <li><a href="discografia.html">Discografía</a></li>
-                    <li><a href="banda.html" class="active">Banda</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="banda-page">
+    <!-- HERO BANDA -->
+    <section class="page-hero page-hero--banda">
+      <div class="container">
+        <h1 class="page-hero__title">La banda</h1>
+        <p class="page-hero__subtitle">
+          Conocé a los integrantes de Soda Stereo, la historia detrás de su formación y
+          algunos de los hitos que marcaron el camino de la banda.
+        </p>
+      </div>
+    </section>
+
+    <!-- INTEGRANTES -->
+    <section class="page-section banda-page__integrantes">
+      <div class="container">
+        <h2 class="section-title">Integrantes</h2>
+
+        <div class="cards-grid">
+          <!-- Gustavo -->
+          <article class="card card--integrante">
+            <img
+              class="card__img card__img--circle"
+              src="../img/cerati_perfil.jpg"
+              alt="Gustavo Cerati"
+            />
+            <div class="card__body">
+              <h3 class="card__title">Gustavo Cerati</h3>
+              <p class="card__subtitle">Voz, guitarra y composición</p>
+              <p class="card__text">
+                Líder de la banda y uno de los compositores más influyentes del rock en
+                español. Responsable de gran parte del sonido, las letras y la estética de
+                Soda Stereo.
+              </p>
+              <p class="card__link">
+                <a
+                  href="https://es.wikipedia.org/wiki/Gustavo_Cerati"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver biografía completa
+                </a>
+              </p>
             </div>
-        </nav>
-    </header>
+          </article>
 
-    <!-- Contenido principal -->
-    <main>
-        <!-- Sección H1: Integrantes -->
-        <section class="integrantes">
-            <h1>Integrantes</h1>
-            
-            <!-- Integrante 1 -->
-            <article class="integrante-item">
-                <img src="../img/cerati_perfil.jpg" alt="Foto de Gustavo Cerati">
-                <div class="integrante-info">
-                    <h2>Gustavo Cerati</h2>
-                    <h3>Voz y Guitarra</h3>
-                    <p>Gustavo Cerati, alma y cerebro de Soda Stereo, revolucionó el rock en español con su voz única y su guitarra icónica. Su creatividad y sensibilidad musical dejaron canciones eternas que siguen inspirando a nuevas generaciones.</p>
-                </div>
-            </article>
+          <!-- Zeta -->
+          <article class="card card--integrante">
+            <img
+              class="card__img card__img--circle"
+              src="../img/zeta_perfil.jpeg"
+              alt="Zeta Bosio"
+            />
+            <div class="card__body">
+              <h3 class="card__title">Zeta Bosio</h3>
+              <p class="card__subtitle">Bajo y coros</p>
+              <p class="card__text">
+                Bajista de sonido sólido y distintivo, aportó groove y arreglos que
+                definieron la base rítmica de la banda. También participó en la producción
+                de varios trabajos.
+              </p>
+              <p class="card__link">
+                <a
+                  href="https://es.wikipedia.org/wiki/Zeta_Bosio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver biografía completa
+                </a>
+              </p>
+            </div>
+          </article>
 
-            <!-- Integrante 2 -->
-            <article class="integrante-item">
-                <img src="../img/zeta_perfil.jpeg" alt="Foto de Zeta Bosio">
-                <div class="integrante-info">
-                    <h2>Zeta Bosio</h2>
-                    <h3>Bajo</h3>
-                    <p>Zeta Bosio, bajista legendario, puso ritmo y fuerza a cada canción de Soda Stereo. Su estilo sólido y elegante convirtió cada línea de bajo en una pieza indispensable que complementaba perfectamente la magia de Cerati.</p>
-                </div>
-            </article>
-
-            <!-- Integrante 3 -->
-            <article class="integrante-item">
-                <img src="../img/charly_perfil.jpg" alt="Foto de Charly Alberti">
-                <div class="integrante-info">
-                    <h2>Charly Alberti</h2>
-                    <h3>Batería y Percusión</h3>
-                    <p>Charly Alberti, el corazón rítmico de la banda, hizo que cada tema de Soda Stereo tuviera energía y precisión. Su batería vibrante y creativa marcó el pulso de una banda que sigue siendo leyenda.</p>
-                </div>
-            </article>
-
-            <!-- Sección: Cita destacada/Dato histórico -->
-            <section class="dato-historico">
-                <h2>Cita destacada</h2>
-                <blockquote>
-                    <p>"Nada personal, sólo música." — Soda Stereo, frase representativa de la esencia artística de la banda durante su carrera.</p>
-                </blockquote>
-            </section>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Soda Stereo. Todos los derechos reservados.</p>
-        <div class="redes-sociales">
-            <a href="https://www.facebook.com/sodastereo" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://www.instagram.com/sodastereo" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://twitter.com/sodastereo" target="_blank" rel="noopener noreferrer">Twitter</a>
+          <!-- Charly -->
+          <article class="card card--integrante">
+            <img
+              class="card__img card__img--circle"
+              src="../img/charly_perfil.jpg"
+              alt="Charly Alberti"
+            />
+            <div class="card__body">
+              <h3 class="card__title">Charly Alberti</h3>
+              <p class="card__subtitle">Batería</p>
+              <p class="card__text">
+                Baterista de estilo potente y preciso, clave en el sonido en vivo de Soda
+                Stereo. Después de la banda, continuó con proyectos musicales y campañas
+                vinculadas al medio ambiente.
+              </p>
+              <p class="card__link">
+                <a
+                  href="https://es.wikipedia.org/wiki/Charly_Alberti"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver biografía completa
+                </a>
+              </p>
+            </div>
+          </article>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- LÍNEA DE TIEMPO -->
+    <section class="page-section page-section--alt">
+      <div class="container">
+        <h2 class="section-title">Línea de tiempo</h2>
+
+        <div class="timeline timeline--banda">
+          <div class="timeline__item">
+            <p class="timeline__year">1982</p>
+            <p class="timeline__text">Formación de Soda Stereo en Buenos Aires.</p>
+          </div>
+
+          <div class="timeline__item">
+            <p class="timeline__year">1984</p>
+            <p class="timeline__text">
+              Lanzan su álbum debut <strong>Soda Stereo</strong>, con influencias new wave.
+            </p>
+          </div>
+
+          <div class="timeline__item">
+            <p class="timeline__year">1986</p>
+            <p class="timeline__text">
+              Publican <strong>Signos</strong> y realizan una gira continental que los
+              consagra en Latinoamérica.
+            </p>
+          </div>
+
+          <div class="timeline__item">
+            <p class="timeline__year">1990</p>
+            <p class="timeline__text">
+              Editan <strong>Canción Animal</strong>, considerado uno de los mejores discos
+              del rock en español.
+            </p>
+          </div>
+
+          <div class="timeline__item">
+            <p class="timeline__year">1997</p>
+            <p class="timeline__text">
+              Gira de despedida con el histórico show de “Gracias Totales” en River.
+            </p>
+          </div>
+
+          <div class="timeline__item">
+            <p class="timeline__year">2007</p>
+            <p class="timeline__text">
+              Se reencuentran para la gira <strong>Me Verás Volver</strong>, con shows en
+              toda América.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Soda Stereo. Todos los derechos reservados.</p>
+    <div class="redes-sociales">
+      <a href="https://www.facebook.com/sodastereo" target="_blank" rel="noopener noreferrer">
+        Facebook
+      </a>
+      <a href="https://www.instagram.com/sodastereo" target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+      <a href="https://twitter.com/sodastereo" target="_blank" rel="noopener noreferrer">
+        Twitter
+      </a>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+  ></script>
 </body>
 </html>

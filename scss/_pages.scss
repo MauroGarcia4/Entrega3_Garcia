@@ -1,0 +1,562 @@
+/**
+ * Estilos específicos por página
+ * Uso de nesting: clases padre con modificadores y elementos hijos
+ * Uso de variables: todas las variables definidas en _variables.scss
+ * Uso de mixins: @include respond-to, @include fade-in-up, @include smooth-transition
+ */
+
+// HOME
+.hero {
+  position: relative;
+  min-height: 70vh;
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.95)
+    ),
+    url("../img/soda_destacada.jpg") center/cover no-repeat;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, transparent 0%, $color-bg 65%);
+  }
+
+  &__content {
+    position: relative;
+    padding-block: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 70vh;
+    max-width: 780px;
+
+    @include respond-to(tablet) {
+      min-height: 60vh;
+      padding-block: 3.5rem;
+      max-width: 700px;
+    }
+
+    @include respond-to(mobile) {
+      min-height: auto;
+      padding-block: 3rem 3.5rem;
+      text-align: center;
+      align-items: center;
+      max-width: 100%;
+    }
+  }
+
+  &__title {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin-bottom: 0.75rem;
+    @include fade-in-up(0.2s, $transition-slower);
+    position: relative;
+    color: $color-light;
+
+    @include respond-to(tablet) {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+    }
+
+    @include respond-to(mobile) {
+      font-size: clamp(1.75rem, 5vw, 2.2rem);
+    }
+
+    // Efecto de brillo animado en el título
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, $color-secondary, transparent);
+      animation: slideInRight 0.8s ease-out 0.5s both;
+
+      @include respond-to(mobile) {
+        width: 80px;
+      }
+    }
+  }
+
+  &__subtitle {
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    color: $color-muted;
+    margin-bottom: $spacing-lg;
+    @include fade-in-up(0.4s, $transition-slower);
+    line-height: 1.65;
+    font-weight: 400;
+
+    @include respond-to(tablet) {
+      font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+      margin-bottom: $spacing-md;
+    }
+
+    @include respond-to(mobile) {
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      padding-inline: $spacing-md;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-sm;
+    @include fade-in-up(0.6s, $transition-slower);
+    flex-wrap: wrap;
+
+    @include respond-to(tablet) {
+      gap: $spacing-xs;
+    }
+
+    @include respond-to(mobile) {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: $spacing-xs;
+
+      .btn {
+        width: 100%;
+        text-align: center;
+        font-size: $font-size-sm;
+        padding: 0.6rem 1.5rem;
+      }
+    }
+  }
+}
+
+.home-section--highlight {
+  .cards-grid {
+    margin-top: 1.5rem;
+  }
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.3fr;
+  gap: 3rem;
+  align-items: flex-start;
+  margin-top: $spacing-lg;
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    margin-top: $spacing-md;
+  }
+
+  @include respond-to(mobile) {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+    margin-top: $spacing-md;
+  }
+
+  &__text {
+    font-size: $font-size-base;
+    color: $color-light;
+    opacity: 0.96;
+    line-height: 1.75;
+    font-weight: 400;
+
+    .about-list {
+      margin-top: 0.75rem;
+
+      li {
+        margin-bottom: 0.5rem;
+        opacity: 0.94;
+        line-height: 1.65;
+        font-size: $font-size-base;
+      }
+    }
+  }
+
+  &__data {
+    background-color: $color-surface-elevated;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    border: 1px solid $color-border;
+    @include soft-shadow(40px, 0.5);
+    @include smooth-transition(transform box-shadow, $transition-base);
+
+    &:hover {
+      transform: translateY(-2px);
+      @include soft-shadow(50px, 0.6);
+    }
+
+    @include respond-to(tablet) {
+      padding: $spacing-md;
+    }
+
+    @include respond-to(mobile) {
+      padding: $spacing-md;
+    }
+  }
+
+  &__note {
+    margin-top: 0.75rem;
+    font-size: $font-size-sm;
+    color: $color-muted;
+    opacity: 0.88;
+    line-height: 1.65;
+  }
+}
+
+.data-list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: $font-size-sm;
+    padding-block: 0.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  dt {
+    font-weight: 600;
+  }
+
+  dd {
+    margin: 0;
+    color: $color-secondary;
+  }
+}
+
+// -------- BANDA --------
+
+.banda-page {
+  &__integrantes {
+    margin-top: $spacing-lg;
+
+    @include respond-to(mobile) {
+      margin-top: $spacing-md;
+    }
+  }
+
+  .card--integrante {
+    @include smooth-transition(all, $transition-base);
+
+    &:hover {
+      transform: translateY(-5px) scale(1.02);
+    }
+
+    .card__img--circle {
+      width: 120px;
+      height: 120px;
+      margin-inline: auto;
+      object-fit: cover;
+      margin-bottom: $spacing-sm;
+      @include smooth-transition(transform, $transition-base);
+
+      @include respond-to(tablet) {
+        width: 110px;
+        height: 110px;
+      }
+
+      @include respond-to(mobile) {
+        width: 100px;
+        height: 100px;
+      }
+
+      &:hover {
+        transform: scale(1.1) rotate(5deg);
+      }
+    }
+
+    .card__text {
+      color: $color-light;
+      opacity: 0.96;
+      line-height: 1.75;
+      font-weight: 400;
+    }
+  }
+}
+
+// -------- DISCOGRAFÍA --------
+
+.discografia-page {
+  .page-section--filters {
+    background-color: $color-surface-elevated;
+    
+    @include respond-to(mobile) {
+      padding-block: $spacing-md;
+    }
+  }
+
+  .discos-grid {
+    margin-top: $spacing-lg;
+
+    @include respond-to(mobile) {
+      margin-top: $spacing-md;
+      gap: $spacing-md;
+    }
+  }
+
+  .disco-card {
+    @include smooth-transition(all, $transition-base);
+
+    &:hover {
+      transform: translateY(-5px) scale(1.01);
+    }
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: $spacing-xs;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+
+      @include respond-to(mobile) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    &__title {
+      font-size: $font-size-lg;
+      
+      @include respond-to(tablet) {
+        font-size: $font-size-base;
+      }
+
+      @include respond-to(mobile) {
+        font-size: $font-size-sm;
+      }
+    }
+
+    &__meta {
+      font-size: $font-size-sm;
+      color: $color-muted;
+      margin-bottom: 0.4rem;
+    }
+
+    &__desc {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-xs;
+      line-height: 1.5;
+    }
+
+    &__tracks {
+      font-size: $font-size-sm;
+      opacity: 0.96;
+      line-height: 1.75;
+      color: $color-light;
+
+      li {
+        margin-bottom: 0.35rem;
+        @include smooth-transition(color, $transition-fast);
+        opacity: 0.94;
+        font-weight: 400;
+
+        &:hover {
+          color: $color-secondary;
+          opacity: 1;
+        }
+
+        &::before {
+          content: "• ";
+          color: $color-secondary;
+          font-weight: bold;
+          font-size: 1.2em;
+          margin-right: 0.25rem;
+        }
+      }
+    }
+  }
+}
+
+// -------- CONTACTO --------
+
+.contacto-page {
+  .contacto-layout {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    gap: 3rem;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin-inline: auto;
+
+    @include respond-to(tablet) {
+      grid-template-columns: 1.3fr 1fr;
+      gap: 2rem;
+      max-width: 900px;
+    }
+
+    @include respond-to(mobile) {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+      gap: $spacing-lg;
+    }
+  }
+
+  .contact-form {
+    max-width: 900px;
+
+    &__row {
+      display: flex;
+      gap: $spacing-lg;
+
+      @include respond-to(tablet) {
+        gap: $spacing-md;
+      }
+
+      @include respond-to(mobile) {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+
+    &__field {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: $spacing-lg;
+      position: relative;
+
+      label {
+        margin-bottom: 0.35rem;
+        font-weight: 600;
+        font-size: $font-size-base;
+        @include smooth-transition(color, $transition-fast);
+      }
+
+      input,
+      textarea {
+        padding: 0.6rem 0.8rem;
+        border-radius: $radius-sm;
+        border: 1px solid $color-border;
+        background-color: $color-surface-elevated;
+        color: $color-light;
+        font-size: $font-size-base;
+        @include smooth-transition(all, $transition-base);
+
+        // Efecto focus mejorado
+        &:focus {
+          outline: none;
+          border-color: $color-secondary;
+          box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.2), 0 4px 12px rgba(249, 115, 22, 0.15);
+          transform: translateY(-2px);
+        }
+
+        // Placeholder animado
+        &::placeholder {
+          color: $color-muted;
+          opacity: 0.6;
+          @include smooth-transition(opacity, $transition-fast);
+        }
+
+        &:focus::placeholder {
+          opacity: 0.4;
+        }
+
+        // Operador @for: animaciones escalonadas en inputs (multiplicación: $i * 0.1)
+        @for $i from 1 through 10 {
+          &:nth-of-type(#{$i}) {
+            animation: fadeInUp 0.4s ease-out #{$i * 0.1}s both;
+          }
+        }
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      // Label animado cuando el input tiene focus o valor
+      &:has(input:focus) label,
+      &:has(input:not(:placeholder-shown)) label {
+        color: $color-secondary;
+      }
+    }
+  }
+
+  .contacto-layout__info {
+    background-color: $color-surface-elevated;
+    border-radius: $radius-lg;
+    padding: $spacing-lg;
+    border: 1px solid $color-border;
+    @include soft-shadow(40px, 0.5);
+    @include smooth-transition(transform box-shadow, $transition-base);
+
+    &:hover {
+      transform: translateY(-2px);
+      @include soft-shadow(50px, 0.6);
+    }
+
+    @include respond-to(tablet) {
+      padding: $spacing-md;
+    }
+
+    @include respond-to(mobile) {
+      padding: $spacing-md;
+    }
+  }
+
+  .contacto-text {
+    font-size: $font-size-base;
+    margin-bottom: 1.5rem;
+    opacity: 0.96;
+    color: $color-light;
+    line-height: 1.75;
+    font-weight: 400;
+  }
+
+  .contacto-list {
+    margin-bottom: 1.5rem;
+
+    li {
+      font-size: $font-size-base;
+      margin-bottom: 0.4rem;
+      color: $color-light;
+      opacity: 0.94;
+      line-height: 1.65;
+      font-weight: 400;
+
+      span {
+        color: $color-secondary;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .newsletter {
+    &__title {
+      font-size: $font-size-lg;
+      margin-bottom: 0.25rem;
+    }
+
+    &__text {
+      font-size: $font-size-sm;
+      margin-bottom: 0.75rem;
+    }
+
+    &__form {
+      display: flex;
+      gap: 0.5rem;
+
+      @include respond-to(mobile) {
+        flex-direction: column;
+      }
+
+      input {
+        flex: 1;
+        padding: 0.6rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid $color-border;
+        background-color: $color-bg;
+        color: $color-light;
+        font-size: $font-size-sm;
+      }
+
+      button {
+        white-space: nowrap;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "soda-stereo-website",
+  "version": "1.0.0",
+  "description": "Sitio web dedicado a Soda Stereo. Incluye información sobre la banda, discografía, integrantes y formulario de contacto.",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch scss/styles.scss css/styles.css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MauroGarcia4/Entrega2_Garcia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MauroGarcia4/Entrega2_Garcia/issues"
+  },
+  "homepage": "https://github.com/MauroGarcia4/Entrega2_Garcia#readme",
+  "devDependencies": {
+    "install": "^0.13.0",
+    "npm": "^11.6.2",
+    "sass": "^1.94.0"
+  }
+}
